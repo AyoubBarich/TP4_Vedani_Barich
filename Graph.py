@@ -4,10 +4,10 @@ class Graph:
     We chose to define our graphes with dictionnary to be performant enough
     """
 
-    def __init__(self):
+    def __init__(self,graph={}):
         """Constructor"""
         self.size =0
-        self.graph = {}
+        self.graph = graph
      
 
     def add_summit(self, summit):
@@ -66,9 +66,9 @@ class Graph:
             #     res += summit
         return res
     def getSummits(self):
-        return self.graph.keys()
+        return list(self.graph.keys())
     def getNeigbours(self,summit):
-        return self.graph[summit].keys()
+        return list(self.graph[summit].keys())
 
 
         
