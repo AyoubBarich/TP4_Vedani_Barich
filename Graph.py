@@ -52,7 +52,7 @@ class Graph:
             return True
         return False
     def getWeight(self,summitA,summitB):
-        return self.graph[summitA]
+        return self.graph[summitA][summitB]
     def __str__(self) -> str:
         """Overides the print function"""
         res="Representation of our Graph \n"
@@ -67,7 +67,9 @@ class Graph:
         return res
     def getSummits(self):
         return self.graph.keys()
-        
+    def getNeigbours(self,summit):
+        return self.graph[summit].keys()
+
 
         
 
