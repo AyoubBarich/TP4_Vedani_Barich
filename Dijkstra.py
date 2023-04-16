@@ -1,7 +1,7 @@
 from Graph import Graph
 from Graph import Couple
 import math
-import heapq
+from Heap import Heap
 INF = math.inf
 
 
@@ -9,44 +9,6 @@ TestGraph = Graph(graph={"s": {"t": 10, "y": 5}, "t": {"x": 1, "y": 2}, "y": {
                   "t": 3, "z": 2, "x": 9}, "x": {"z": 4}, "z": {"x": 6, "s": 7}})
 
 
-# def DijkstraHeap(origine:str , graph:Graph):
-#     summits={}
-
-#     path ={}
-#     queue=graph.getSummits()
-#     summits[origine] = 0
-#     for summit in graph.getSummits():
-#         if summit != origine:
-#             summits[summit] = INF
-
-#     while queue!=[]:
-
-#         u = extraireMin(queue,summits).pop(0)
-#         print("U",u)
-#         neighbours = graph.getNeigbours(u)
-#         for adj in neighbours:
-#             distance=summits[u]+ graph.getWeight(u,adj)
-#             if summits[adj]>distance:
-#                 summits[adj]=distance
-#                 path[u]=adj
-#                 print("path :",path)
-
-#                 print('summits',summits)
-#             summits=heapify(summits,adj)
-#         summits.pop(u)
-
-# return path
-
-# for summit in graph.getSummits:
-#     if  summit not in queue:
-#         neighbours = graph.getNeigbours(summit)
-
-#         for neighbour in neighbours:
-#             distance=summits[summit]+ graph.getWeight(summit,neighbour)
-#             if summits[neighbour]>distance:
-#                 summits[neighbour] = distance
-#                 if summits[min]>summits[neighbour]:
-#                     min = neighbour
 
 def dijkstra(origine: str, graph: Graph):
 
@@ -91,72 +53,94 @@ def rebuildShortestPath(graph:Graph,path:dict):
                 
     return ShortestPath
 
-def dijkstraHeap(origine: str, graph: Graph):
-    F = []
-    shortestPath = {}
+
+# def dijkstraHeap(origine: str, graph: Graph):
+#     waitGraph = dict(graph.graph)
+#     summits = {}
+#     path = {}
+#     summits[origine] = 0
+#     for summit in waitGraph:
+#         if summit != origine:
+#             summits[summit] = INF
     
-    heapq.heappush(F,Couple(origine,0))
-
-    while F:
-        u = heapq.heappop(F)
-
+#     heap = Heap(graph.summitNumber)
+#     parsedHeap = heap.parseDictToHeap(summits)
+#     print(parsedHeap)
 
 
 
+# dijkstraHeap("s",TestGraph)
+
+# def extractMin(dict:dict):
+#     return dict.popitem(0)[0]
+# def cutSummit(dict:dict,v,dv):
+#     heapObject = Heap(len(dict.keys()))
+#     heapList = heapObject.parseDictToHeap(dict)
+#     for value in heapList:
+#         keys = getKeyFormValue(dict,value)
+        
+#         dict[keys.pop(0)]
+        
+#         # if value >=0:
+#         #     keys = getKeyFormValue(dict,value)
+#         #     tmp  =dict.__getitem__()
+#         #     dict.__setitem__(keys[0],value)
+
+
+# def getKeyFormValue(dict:dict,value):
+#     keys = {i for i in dict if dict[i]==value}
+#     return list(keys)
+    
 
 
 
 
+# # def extraireMin(queue:list,summits:dict):
+
+# #     if queue != []:
+# #         values=list(summits.values())
+
+# #         sorted(values)
+# #         print("values :",values)
+# #         key=""
+# #         for summit in summits:
+# #             if values[0] == summits[summit]:
+# #                 key = str(summit)
+# #         indexA = queue.index(key)
+# #         exchange(queue,0,indexA)
+
+# #     else:
+# #         print("queue is empty!!")
+# #     return queue
+
+# # def exchange(list,indexA,indexB):
+# #     list[indexA], list[indexB] = list[indexB], list[indexA]
+
+# # def heapify(summits:dict,adj):
+
+# #     min =INF
+# #     minItem=None
+# #     listOfItems=list(summits.items())
+# #     print(listOfItems)
+# #     for item in listOfItems:
+# #         if min >item[1]:
+
+# #             minItem = item
+# #             min=item[1]
+# #     print('min :',min)
+# #     adjIndex= listOfItems.index((adj,summits[adj]))
+
+# #     index =listOfItems.index(minItem)
+# #     listOfItems[adjIndex],listOfItems[index]=listOfItems[index],listOfItems[adjIndex]
+# #     summits=dict(listOfItems)
+# #     return summits
 
 
+# ############### TEST##################
+print(dijkstraQueue("s",TestGraph))
 
+print(rebuildShortestPath( TestGraph,dijkstraQueue("s", TestGraph)))
 
-# def extraireMin(queue:list,summits:dict):
-
-#     if queue != []:
-#         values=list(summits.values())
-
-#         sorted(values)
-#         print("values :",values)
-#         key=""
-#         for summit in summits:
-#             if values[0] == summits[summit]:
-#                 key = str(summit)
-#         indexA = queue.index(key)
-#         exchange(queue,0,indexA)
-
-#     else:
-#         print("queue is empty!!")
-#     return queue
-
-# def exchange(list,indexA,indexB):
-#     list[indexA], list[indexB] = list[indexB], list[indexA]
-
-# def heapify(summits:dict,adj):
-
-#     min =INF
-#     minItem=None
-#     listOfItems=list(summits.items())
-#     print(listOfItems)
-#     for item in listOfItems:
-#         if min >item[1]:
-
-#             minItem = item
-#             min=item[1]
-#     print('min :',min)
-#     adjIndex= listOfItems.index((adj,summits[adj]))
-
-#     index =listOfItems.index(minItem)
-#     listOfItems[adjIndex],listOfItems[index]=listOfItems[index],listOfItems[adjIndex]
-#     summits=dict(listOfItems)
-#     return summits
-
-
-############### TEST##################
-# print(dijkstraQueue("s",TestGraph))
-
-# print(rebuildShortestPath( TestGraph,dijkstraQueue("s", TestGraph)))
-
-# RandomGraph = Graph()
-# RandomGraph = RandomGraph.generateRandomGraph(3,1)
-# print(RandomGraph) 
+RandomGraph = Graph()
+RandomGraph = RandomGraph.generateRandomGraph(3,1)
+print(RandomGraph) 
