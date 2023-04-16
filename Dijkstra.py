@@ -1,5 +1,6 @@
 from Graph import Graph
-
+import time
+import sys
 import math
 from Heap import Heap
 INF = math.inf
@@ -11,6 +12,7 @@ TestGraph = Graph(graph={"s": {"t": 10, "y": 5}, "t": {"x": 1, "y": 2}, "y": {
 
 
 def dijkstra(origine: str, graph: Graph):
+    """Implementation of slow dijkstra algorithim using a PriortyQueue"""
 
     waitGraph = dict(graph.graph)
     summits = {}
@@ -39,6 +41,7 @@ def dijkstra(origine: str, graph: Graph):
 
 
 def rebuildShortestPath(graph:Graph,path:dict):
+    """Rebuilds the shortest path descriped by the dictionary path"""
     ShortestPath = {}
     
     for summit in graph.graph:
@@ -137,10 +140,24 @@ def rebuildShortestPath(graph:Graph,path:dict):
 
 
 # ############### TEST##################
-print(dijkstra("s",TestGraph))
 
-print(rebuildShortestPath( TestGraph,dijkstra("s", TestGraph)))
+# print(dijkstra("s",TestGraph))
+# print(rebuildShortestPath( TestGraph,dijkstra("s", TestGraph)))
 
-RandomGraph = Graph()
-RandomGraph = RandomGraph.generateRandomGraph(3,1)
-print(RandomGraph) 
+
+def experiment(n):
+    results ={}
+    minTime =sys.maxsize
+    idealDensity = 1
+    for i in range(1,n):
+        RandomGraph = Graph().generateRandomGraph(100,(i/n))
+        
+        start = time.time()
+        dijkstra("0",RandomGraph)
+        results[i] = (time.time() - start)*1000
+        if minTime > results[i] :
+            idealDensity = i/n 
+            minTime = results[i]
+    return (minTime,idealDensity)
+
+print(experiment(100))

@@ -84,7 +84,7 @@ class Graph:
         
             
         density = self.ridgeNumber/(2*self.summitNumber)
-        print(density)
+        
         while density != d:
             randomSummitA = random.randint(0,n)
             randomSummitB = random.randint(0,n)
