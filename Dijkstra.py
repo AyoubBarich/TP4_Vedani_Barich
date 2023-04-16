@@ -141,11 +141,12 @@ def rebuildShortestPath(graph:Graph,path:dict):
 
 # ############### TEST##################
 
-# print(dijkstra("s",TestGraph))
-# print(rebuildShortestPath( TestGraph,dijkstra("s", TestGraph)))
+print(dijkstra("s",TestGraph))
+print(rebuildShortestPath( TestGraph,dijkstra("s", TestGraph)))
 
 
 def experiment(n):
+    """We run an expirement n times to determine the ideal density"""
     results ={}
     minTime =sys.maxsize
     idealDensity = 1
@@ -154,7 +155,7 @@ def experiment(n):
         
         start = time.time()
         dijkstra("0",RandomGraph)
-        results[i] = (time.time() - start)*1000
+        results[i] = (time.time() - start)
         if minTime > results[i] :
             idealDensity = i/n 
             minTime = results[i]

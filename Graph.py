@@ -72,12 +72,12 @@ class Graph:
     
 
     def getNeigbours(self,summit):
-        """Returns a list of all neighbours of q given graph"""
+        """Returns a list of all neighbours of a given graph"""
         return list(self.graph[summit].keys())
 
 
     def generateRandomGraph(self,n,d):
-        """Generate Random Graph from a given nuber of Summits and a density"""
+        """Generate Random Graph from a given number of Summits and a density"""
 
         for i in range(n):
             self.add_summit(str(i))
