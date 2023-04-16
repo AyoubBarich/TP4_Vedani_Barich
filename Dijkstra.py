@@ -1,5 +1,5 @@
 from Graph import Graph
-from Graph import Couple
+
 import math
 from Heap import Heap
 INF = math.inf
@@ -137,9 +137,9 @@ def rebuildShortestPath(graph:Graph,path:dict):
 
 
 # ############### TEST##################
-print(dijkstraQueue("s",TestGraph))
+print(dijkstra("s",TestGraph))
 
-print(rebuildShortestPath( TestGraph,dijkstraQueue("s", TestGraph)))
+print(rebuildShortestPath( TestGraph,dijkstra("s", TestGraph)))
 
 RandomGraph = Graph()
 RandomGraph = RandomGraph.generateRandomGraph(3,1)
