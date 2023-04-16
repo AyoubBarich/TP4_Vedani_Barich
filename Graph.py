@@ -8,9 +8,8 @@ class Graph:
     def __init__(self,graph={}):
         """Constructor"""
         self.ridgeNumber=0
-        self.summitNumber=0
-        
         self.graph = graph
+        self.summitNumber=len(self.graph.keys())
      
 
     def add_summit(self, summit):
@@ -63,24 +62,23 @@ class Graph:
         """Overides the print function"""
         res="Representation of our Graph \n"
         res += self.graph.__str__()
-        # for summit in self.graph:
-        #     child =self.graph[summit]
-            
-            # if child != {}:
-            #     res += summit +" is connected to "+child[0]+" with the weight "+child[1] +"\n"
-            # else:
-            #     res += summit
+
         return res
     
     def getSummits(self):
+        """
+        Returns a list of all graph summits"""
         return list(self.graph.keys())
     
 
     def getNeigbours(self,summit):
+        """Returns a list of all neighbours of q given graph"""
         return list(self.graph[summit].keys())
 
 
     def generateRandomGraph(self,n,d):
+        """Generate Random Graph from a given nuber of Summits and a density"""
+
         for i in range(n):
             self.add_summit(str(i))
         
@@ -96,15 +94,6 @@ class Graph:
             density = self.ridgeNumber/(2*self.summitNumber)
     
         return self
-
-
-class Couple:
-    def __init__(self,ridge,distance) :
-        self.ridge = ridge
-        self.distance = distance
-    def __lt__(self,other):
-        return self.distance < other.distance
-
 
 
 
