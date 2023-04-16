@@ -1,3 +1,4 @@
+import random
 class Graph:
 
     """
@@ -6,7 +7,9 @@ class Graph:
 
     def __init__(self,graph={}):
         """Constructor"""
-        self.size =0
+        self.ridgeNumber=0
+        self.summitNumber=0
+        
         self.graph = graph
      
 
@@ -16,7 +19,7 @@ class Graph:
         """
         if summit not in self.graph:
             self.graph[summit] = {}
-            self.size += 1
+            self.summitNumber += 1
 
     def add_ridge(self, summitA, summitB, weight):
         """
@@ -27,6 +30,7 @@ class Graph:
         if summitA in self.graph and summitB in self.graph:
             if not(summitB in self.graph[summitA].keys()):
                 self.graph[summitA].__setitem__(summitB,weight)
+                self.ridgeNumber += 1
 
     def cancel_summit(self, summit):
         """
@@ -51,8 +55,10 @@ class Graph:
         if summitA in self.graph and summitB in self.graph[summitA]:
             return True
         return False
+    
     def getWeight(self,summitA,summitB):
         return self.graph[summitA][summitB]
+    
     def __str__(self) -> str:
         """Overides the print function"""
         res="Representation of our Graph \n"
@@ -65,13 +71,47 @@ class Graph:
             # else:
             #     res += summit
         return res
+    
     def getSummits(self):
         return list(self.graph.keys())
+    
+
     def getNeigbours(self,summit):
         return list(self.graph[summit].keys())
 
 
+    def generateRandomGraph(self,n,d):
+        for i in range(n):
+            self.add_summit(str(i))
         
+            
+        density = self.ridgeNumber/(2*self.summitNumber)
+        print(density)
+        while density != d:
+            randomSummitA = random.randint(0,n)
+            randomSummitB = random.randint(0,n)
+            if randomSummitA != randomSummitB:
+                self.add_ridge(str(randomSummitA),str(randomSummitB),random.randint(1,n))
+               
+            density = self.ridgeNumber/(2*self.summitNumber)
+    
+        return self
+
+
+class Couple:
+    def __init__(self,ridge,distance) :
+        self.ridge = ridge
+        self.distance = distance
+    def __lt__(self,other):
+        return self.distance < other.distance
+
+
+
+
+
+
+
+
 
 
 ############### TEST##################
